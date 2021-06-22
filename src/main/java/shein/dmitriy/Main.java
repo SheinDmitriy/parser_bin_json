@@ -1,6 +1,6 @@
 package shein.dmitriy;
 
-import shein.dmitriy.util.OrderService;
+import shein.dmitriy.services.OrderService;
 
 import java.io.*;
 import java.nio.channels.FileChannel;
