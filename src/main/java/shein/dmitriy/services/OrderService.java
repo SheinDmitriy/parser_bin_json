@@ -1,10 +1,11 @@
 package shein.dmitriy.services;
 
+import com.google.gson.Gson;
 import shein.dmitriy.entitys.Item;
 import shein.dmitriy.entitys.Order;
 import shein.dmitriy.util.Tools;
 
-
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
 import java.util.ArrayList;
@@ -14,12 +15,13 @@ public class OrderService {
 
     private FileChannel channel;
     private Tools tools;
-    private Order order = new Order();
-    private ItemService itemService ;
+    private Order order;
+    private static List <Item> list = new ArrayList<Item>();
 
     public OrderService(FileChannel channel) {
         this.channel = channel;
         this.tools = new Tools(channel);
+        order = new Order();
     }
 
     public void getOrderField() throws IOException {
@@ -39,19 +41,13 @@ public class OrderService {
                 break;
             case 4:
                 tools.getTagOrLength();
-                itemService = new ItemService(channel, tools);
+                ItemService itemService = new ItemService(channel, tools);
                 addItem(order, itemService.getItem());
                 break;
-            case -1:
-                System.out.println("000000000000");
-                break;
-
         }
-        System.out.println(order);
     }
 
     public void addItem(Order order, Item item){
-        List<Item> list = new ArrayList<Item>();
         if(order.getItems() != null){
             list = order.getItems();
             list.add(item);
@@ -61,12 +57,13 @@ public class OrderService {
         order.setItems(list);
     }
 
-
-
-
-
-
-
-
-
+    public void jsonWriteFile(String filename) throws IOException {
+        FileWriter fileWriter = new FileWriter(filename);
+        Gson gson = new Gson();
+        String jsonDataForWrite = gson.toJson(order, Order.class);
+        fileWriter.write(jsonDataForWrite);
+        System.out.println("Файл " + filename + " успешно создан");
+        fileWriter.flush();
+        fileWriter.close();
+    }
 }

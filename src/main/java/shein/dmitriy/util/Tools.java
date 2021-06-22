@@ -19,7 +19,6 @@ public class Tools {
         bufferRead(length);
         int number = buf.get();
         buf.clear();
-        System.out.println(number);
         return number;
     }
 
@@ -27,19 +26,20 @@ public class Tools {
         bufferRead(length);
         String s = new String(buf.array(), "CP866");
         buf.clear();
-        System.out.println(s);
         return s;
     }
 
     public int getTagOrLength() throws IOException {
         buf = ByteBuffer.allocate(2);
         buf.clear();
-        channel.read(buf);
-        buf.flip();
-        int tag = buf.get();
-        buf.clear();
-        System.out.println(tag);
-        return tag;
+        int i = channel.read(buf);
+        if(i != -1) {
+            buf.flip();
+            int tag = buf.get();
+            buf.clear();
+            return tag;
+        }
+        return 0;
     }
 
     public Date getDate(int length) throws IOException {
@@ -48,13 +48,15 @@ public class Tools {
         buf.clear();
         System.out.println(date);
         return date;
-
     }
 
-    public int getFVLN(int length) throws IOException {
-        bufferRead(length );
-        int quantity = buf.get();
-        System.out.println("quantity " + quantity);
+    public double getFVLN(int length) throws IOException {
+        bufferRead( 1 );
+        int p = buf.get();
+        buf.clear();
+        bufferRead(length - 1 );
+        int qua = buf.get();
+        double quantity = qua / Math.pow(10, p);
         buf.clear();
         return quantity;
     }
@@ -66,5 +68,4 @@ public class Tools {
         buf.flip();
         return buf;
     }
-
 }

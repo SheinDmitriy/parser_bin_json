@@ -12,7 +12,6 @@ public class ItemService {
     private Tools tools;
     private OrderService orderService;
 
-
     public ItemService(FileChannel channel, Tools tools) {
         this.channel = channel;
         this.tools = tools;
@@ -38,16 +37,12 @@ public class ItemService {
                 orderService = new OrderService(channel);
                 orderService.getOrderField();
                 break;
-
         }
     }
 
     public Item getItem() throws IOException {
         Item item = new Item();
-
-
-       getItemField(item);
-
+        getItemField(item);
         return item;
     }
 }

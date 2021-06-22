@@ -9,7 +9,7 @@ public class Item {
 
     private int price;
 
-    private int quantity;
+    private double quantity;
 
     private int sum;
 }
