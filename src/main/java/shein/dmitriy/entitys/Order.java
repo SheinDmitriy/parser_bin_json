@@ -14,5 +14,5 @@ public class Order {
 
     private String customerName;
 
-    private List<Items> items;
+    private List<Item> items;
 }
