@@ -46,7 +46,7 @@ public class Tools {
     public String getDate(int length) throws IOException {
         bufferRead(length);
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-        String date = formatter.format(new Date((int) buf.get()));
+        String date = formatter.format(new Date(Math.abs(buf.getInt())));
         buf.clear();
         return date;
     }
