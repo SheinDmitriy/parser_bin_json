@@ -62,7 +62,7 @@ public class OrderService {
         Gson gson = new Gson();
         String jsonDataForWrite = gson.toJson(order, Order.class);
         fileWriter.write(jsonDataForWrite);
-        System.out.println("Файл " + filename + " успешно создан");
+        System.out.println("File " + filename + " created successfully");
         fileWriter.flush();
         fileWriter.close();
     }

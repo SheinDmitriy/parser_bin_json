@@ -8,6 +8,10 @@
     <packaging>jar</packaging>
     <artifactId>parser_bin_json</artifactId>
     <version>1.0</version>
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -38,7 +42,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>Main</mainClass>
+                            <mainClass>shein.dmitriy.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
