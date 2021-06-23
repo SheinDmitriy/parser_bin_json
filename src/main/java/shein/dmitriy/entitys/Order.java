@@ -2,13 +2,12 @@ package shein.dmitriy.entitys;
 
 import lombok.Data;
 
-import java.util.Date;
 import java.util.List;
 
 @Data
 public class Order {
 
-    private Date dateTime;
+    private String dateTime;
 
     private int orderNumber;
 

@@ -10,7 +10,6 @@ public class ItemService {
 
     private FileChannel channel;
     private Tools tools;
-    private OrderService orderService;
 
     public ItemService(FileChannel channel, Tools tools) {
         this.channel = channel;
@@ -34,7 +33,7 @@ public class ItemService {
                 break;
             case 14:
                 item.setSum(tools.getVLN(tools.getTagOrLength()));
-                orderService = new OrderService(channel);
+                OrderService orderService = new OrderService(channel);
                 orderService.getOrderField();
                 break;
         }

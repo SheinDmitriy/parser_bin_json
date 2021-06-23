@@ -3,6 +3,7 @@ package shein.dmitriy.util;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Tools {
@@ -42,11 +43,11 @@ public class Tools {
         return 0;
     }
 
-    public Date getDate(int length) throws IOException {
+    public String getDate(int length) throws IOException {
         bufferRead(length);
-        Date date = new Date((int) buf.get());
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        String date = formatter.format(new Date((int) buf.get()));
         buf.clear();
-        System.out.println(date);
         return date;
     }
 
