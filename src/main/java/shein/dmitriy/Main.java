@@ -10,7 +10,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        String files[];
+        String[] files;
         String stringIn;
         String fileOut;
         String fileIn;
